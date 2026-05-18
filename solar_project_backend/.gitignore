@@ -1,0 +1,23 @@
+# Environment files
+.env
+
+
+# Node
+node_modules/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Django
+db.sqlite3
+*.sqlite3
+
+# Cache / temp
+.cache.sqlite
+
+# OS files
+.DS_Store
+Thumbs.db

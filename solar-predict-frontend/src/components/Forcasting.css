@@ -1,0 +1,168 @@
+.solar-forecast {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 30px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+.forecast-header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.forecast-header h2 {
+  margin: 0 0 8px 0;
+  color: #1a202c;
+  font-size: 2rem;
+}
+
+.forecast-header p {
+  margin: 0;
+  color: #718096;
+  font-size: 1.1rem;
+}
+
+.forecast-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 25px;
+  margin-bottom: 35px;
+}
+
+.forecast-card {
+  background: white;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 25px 15px;
+  text-align: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.forecast-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.day {
+  font-weight: 700;
+  color: #2d3748;
+  margin-bottom: 12px;
+  font-size: 1.2rem;
+}
+
+.condition {
+  font-size: 2.5rem;
+  margin: 15px 0;
+}
+
+.output {
+  font-weight: 700;
+  color: #2d3748;
+  font-size: 1.3rem;
+  margin: 15px 0;
+}
+
+.efficiency {
+  font-size: 1rem;
+  font-weight: 600;
+  margin-top: 10px;
+}
+
+.forecast-summary {
+  background: #f7fafc;
+  border-radius: 12px;
+  padding: 30px;
+  border: 1px solid #e2e8f0;
+}
+
+.summary-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 0;
+  border-bottom: 1px solid #edf2f7;
+  font-size: 1.1rem;
+}
+
+.summary-item:last-child {
+  border-bottom: none;
+}
+
+.summary-item span {
+  color: #718096;
+}
+
+.summary-item strong {
+  color: #2d3748;
+  font-size: 1.1rem;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .solar-forecast {
+    padding: 20px;
+  }
+  
+  .forecast-grid {
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 20px;
+  }
+  
+  .forecast-card {
+    padding: 20px 12px;
+  }
+  
+  .condition {
+    font-size: 2rem;
+  }
+  
+  .output {
+    font-size: 1.1rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .forecast-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+  }
+  
+  .forecast-card {
+    padding: 18px 10px;
+  }
+  
+  .day {
+    font-size: 1.1rem;
+  }
+  
+  .condition {
+    font-size: 1.8rem;
+    margin: 12px 0;
+  }
+  
+  .output {
+    font-size: 1rem;
+    margin: 12px 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .forecast-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+  
+  .forecast-header h2 {
+    font-size: 1.7rem;
+  }
+  
+  .forecast-header p {
+    font-size: 1rem;
+  }
+  
+  .summary-item {
+    font-size: 1rem;
+    padding: 10px 0;
+  }
+}
