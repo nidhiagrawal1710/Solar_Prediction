@@ -1,7 +1,7 @@
 import { Link, useLocation } from "react-router-dom";
 import { useState } from "react";
 import "./Navbar.css";
-import { FiSun, FiSettings, FiChevronDown, FiMenu, FiX } from "react-icons/fi";
+import { FiSun, FiSettings, FiMenu, FiX } from "react-icons/fi";
 
 function Navbar() {
   const location = useLocation();
