@@ -6,6 +6,7 @@ function SolarForecast({ locationData }) {
   const [summary, setSummary] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+  const API_URL = process.env.REACT_APP_API_URL;
 
   useEffect(() => {
     if (locationData) {
@@ -18,7 +19,7 @@ function SolarForecast({ locationData }) {
 
     setLoading(true);
     try {
-      const url = `http://127.0.0.1:8000/api/forecasting-prediction/?lat=${latitude}&lon=${longitude}&panel_area=${panelArea}`;
+      const url = `${API_URL}/api/forecasting-prediction/?lat=${latitude}&lon=${longitude}&panel_area=${panelArea}`;
 
       const res = await fetch(url);
       const data = await res.json();

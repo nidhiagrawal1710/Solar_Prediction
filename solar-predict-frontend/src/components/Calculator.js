@@ -19,6 +19,7 @@ export default function SolarCalculatorMain({ setSolarData, setLastUpdated ,setF
   const [error, setError] = useState("");
   const [locationLabel, setLocationLabel] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const API_URL = process.env.REACT_APP_API_URL;
 
 
   const calculatePanelArea = (numPanels, panelRating, efficiency = 0.18) => {
@@ -156,7 +157,7 @@ export default function SolarCalculatorMain({ setSolarData, setLastUpdated ,setF
   setIsLoading(true);
 
   try {
-    const url = `http://127.0.0.1:8000/api/solar-prediction/?lat=${latitude}&lon=${longitude}&panel_area=${panelArea}`;
+    const url = `${API_URL}/api/solar-prediction/?lat=${latitude}&lon=${longitude}&panel_area=${panelArea}`;
     const res = await fetch(url);
     const data = await res.json();
 

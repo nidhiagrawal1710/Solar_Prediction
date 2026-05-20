@@ -7,7 +7,7 @@ export default function Dashboard({ solarData }) {
 
   const [isLoading, setIsLoading] = useState(true);
   const [lastUpdated, setLastUpdated] = useState(null);
-
+  
   const navigate = useNavigate();
 
   useEffect(() => {
