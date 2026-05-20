@@ -63,7 +63,7 @@ MIDDLEWARE = [
 ]
 
 # CORS_ALLOW_ALL_ORIGINS = True
-CORS_ALLOWED_ORIGINS = ""
+CORS_ALLOWED_ORIGINS = "https://solar-prediction-7tue.vercel.app/"
 ROOT_URLCONF = "solar_project.urls"
 
 TEMPLATES = [
