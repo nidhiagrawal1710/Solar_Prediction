@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import "./Forcasting.css";
 
 function SolarForecast({ locationData }) {
@@ -6,18 +6,16 @@ function SolarForecast({ locationData }) {
   const [summary, setSummary] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+
   const API_URL = process.env.REACT_APP_API_URL;
 
-  useEffect(() => {
-    if (locationData) {
-      fetchForecast();
-    }
-  }, [locationData]);
+  const fetchForecast = useCallback(async () => {
+    if (!locationData) return;
 
-  const fetchForecast = async () => {
     const { latitude, longitude, panelArea } = locationData;
 
     setLoading(true);
+
     try {
       const url = `${API_URL}/api/forecasting-prediction/?lat=${latitude}&lon=${longitude}&panel_area=${panelArea}`;
 
@@ -32,7 +30,11 @@ function SolarForecast({ locationData }) {
     } finally {
       setLoading(false);
     }
-  };
+  }, [locationData, API_URL]);
+
+  useEffect(() => {
+    fetchForecast();
+  }, [fetchForecast]);
 
   const getConditionIcon = (irradiance) => {
     if (irradiance > 4.2) return "☀️";
@@ -41,11 +43,17 @@ function SolarForecast({ locationData }) {
     return "🌧️";
   };
 
-  if (!locationData)
+  if (!locationData) {
     return <div className="solar-forecast">Please calculate first.</div>;
+  }
 
-  if (loading) return <div className="solar-forecast">Loading forecast...</div>;
-  if (error) return <div className="solar-forecast">{error}</div>;
+  if (loading) {
+    return <div className="solar-forecast">Loading forecast...</div>;
+  }
+
+  if (error) {
+    return <div className="solar-forecast">{error}</div>;
+  }
 
   return (
     <div className="solar-forecast">
@@ -72,10 +80,12 @@ function SolarForecast({ locationData }) {
             <span>Avg. Daily Output:</span>
             <strong>{summary.avg_daily_output} kWh</strong>
           </div>
+
           <div className="summary-item">
             <span>Total Weekly:</span>
             <strong>{summary.total_weekly_output} kWh</strong>
           </div>
+
           <div className="summary-item">
             <span>Peak Day:</span>
             <strong>
