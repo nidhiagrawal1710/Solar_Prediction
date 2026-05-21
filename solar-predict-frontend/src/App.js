@@ -17,14 +17,15 @@ function App() {
       <Navbar />
       <Routes>
         <Route 
-          path="/" 
-          element={<Calculator setSolarData={setSolarData} setLastUpdated={setLastUpdated} setForecastParams={setForecastParams} />}
+          path="/dashboard" 
+          element={<Dashboard solarData={solarData} lastUpdated={lastUpdated} />}
            
         />
 
         <Route 
-          path="/dashboard" 
-          element={<Dashboard solarData={solarData} lastUpdated={lastUpdated} />} 
+          path="/" 
+          element={<Calculator setSolarData={setSolarData} setLastUpdated={setLastUpdated} setForecastParams={setForecastParams} />}
+           
         />
 
         <Route 
