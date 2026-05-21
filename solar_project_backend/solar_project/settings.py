@@ -39,9 +39,9 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "corsheaders",
     'rest_framework',
     "solar_app",
-    "corsheaders",
 ]
 
 REST_FRAMEWORK = {
@@ -64,8 +64,9 @@ MIDDLEWARE = [
 
 # CORS_ALLOW_ALL_ORIGINS = True
 CORS_ALLOWED_ORIGINS = [
-    "http://solar-prediction-eta.vercel.app",
+    "https://solar-prediction-eta.vercel.app",
 ]
+
 CSRF_TRUSTED_ORIGINS = [
     "https://solar-prediction-eta.vercel.app",
 ]
