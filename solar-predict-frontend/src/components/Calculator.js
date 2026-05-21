@@ -157,7 +157,7 @@ export default function SolarCalculatorMain({ setSolarData, setLastUpdated ,setF
   setIsLoading(true);
 
   try {
-    const url = `${API_URL}api/solar-prediction/?lat=${latitude}&lon=${longitude}&panel_area=${panelArea}`;
+    const url = `${API_URL}/api/solar-prediction/?lat=${latitude}&lon=${longitude}&panel_area=${panelArea}`;
     const res = await fetch(url);
     const data = await res.json();
 
