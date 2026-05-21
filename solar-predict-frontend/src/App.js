@@ -18,12 +18,13 @@ function App() {
       <Routes>
         <Route 
           path="/" 
-          element={<Dashboard solarData={solarData} lastUpdated={lastUpdated} />} 
+          element={<Calculator setSolarData={setSolarData} setLastUpdated={setLastUpdated} setForecastParams={setForecastParams} />}
+           
         />
 
         <Route 
-          path="/calculator" 
-          element={<Calculator setSolarData={setSolarData} setLastUpdated={setLastUpdated} setForecastParams={setForecastParams} />} 
+          path="/dashboard" 
+          element={<Dashboard solarData={solarData} lastUpdated={lastUpdated} />} 
         />
 
         <Route 
