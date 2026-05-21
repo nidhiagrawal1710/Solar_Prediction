@@ -64,7 +64,7 @@ MIDDLEWARE = [
 
 # CORS_ALLOW_ALL_ORIGINS = True
 CORS_ALLOWED_ORIGINS = [
-    "http://solar-prediction-eta.vercel.app/",
+    "http://solar-prediction-eta.vercel.app",
 ]
 ROOT_URLCONF = "solar_project.urls"
 
