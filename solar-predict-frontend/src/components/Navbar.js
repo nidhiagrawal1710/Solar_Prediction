@@ -9,9 +9,9 @@ function Navbar() {
   const [selectedCity, setSelectedCity] = useState("Mumbai");
 
   const navigation = [
-    { path: "/", label: "Dashboard" },
+    { path: "/dashboard", label: "Dashboard" },
     { path: "/forecasting", label: "Forecasting" },
-    { path: "/calculator", label: "Calculator" },
+    { path: "/", label: "Calculator" },
     { path: "/policies", label: "Policies" },
   ];
 
