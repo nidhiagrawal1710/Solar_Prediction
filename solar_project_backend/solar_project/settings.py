@@ -66,6 +66,9 @@ MIDDLEWARE = [
 CORS_ALLOWED_ORIGINS = [
     "http://solar-prediction-eta.vercel.app",
 ]
+CSRF_TRUSTED_ORIGINS = [
+    "https://solar-prediction-eta.vercel.app",
+]
 ROOT_URLCONF = "solar_project.urls"
 
 TEMPLATES = [
