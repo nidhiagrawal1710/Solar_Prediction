@@ -20,6 +20,7 @@ export default function SolarCalculatorMain({ setSolarData, setLastUpdated ,setF
   const [locationLabel, setLocationLabel] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const API_URL = process.env.REACT_APP_API_URL;
+  const RESTCOUNTRIES_KEY = process.env.REACT_APP_RESTCOUNTRIES_KEY;
 
 
   const calculatePanelArea = (numPanels, panelRating, efficiency = 0.18) => {
@@ -53,24 +54,43 @@ export default function SolarCalculatorMain({ setSolarData, setLastUpdated ,setF
   };
 
   useEffect(() => {
-    fetch("https://restcountries.com/v3.1/all?fields=name")
-      .then((res) => res.json())
-      .then((data) => {
-        const formatted = data
-          .map((c) => ({
-            label: c.name.common,
-            value: c.name.common,
-          }))
-          .sort((a, b) => a.label.localeCompare(b.label));
-        console.log("Countries:", formatted);
+  const loadCountries = async () => {
+    try {
+      const response = await fetch(
+        "https://api.restcountries.com/countries/v5?response_fields=names.common",
+        {
+          headers: {
+            'Authorization': `Bearer ${RESTCOUNTRIES_KEY}`
+          },
+        }
+      );
 
-        setCountries(formatted);
-      })
-      .catch(() => setError("Failed to load countries"));
+      if (!response.ok) {
+        const error = await response.text();
+        throw new Error(`HTTP ${response.status}: ${error}`);
+      }
 
-  }, []);
+      const result = await response.json();
 
+      const countries = result?.data?.objects || [];
 
+      const formatted = countries
+        .map((country) => ({
+          label: country?.names?.common,
+          value: country?.names?.common,
+        }))
+        .filter((country) => country.label)
+        .sort((a, b) => a.label.localeCompare(b.label));
+
+      setCountries(formatted);
+    } catch (error) {
+      console.error("Country loading error:", error);
+      setError("Failed to load countries");
+    }
+  };
+
+  loadCountries();
+}, [RESTCOUNTRIES_KEY]);
 
   const fetchCities = async (countryName) => {
     setCities([]);
