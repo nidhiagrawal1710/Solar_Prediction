@@ -57,27 +57,19 @@ export default function SolarCalculatorMain({ setSolarData, setLastUpdated ,setF
   const loadCountries = async () => {
     try {
       const response = await fetch(
-        "https://api.restcountries.com/countries/v5?response_fields=names.common",
-        {
-          headers: {
-            'Authorization': `Bearer ${RESTCOUNTRIES_KEY}`
-          },
-        }
+        "https://countriesnow.space/api/v0.1/countries"
       );
 
       if (!response.ok) {
-        const error = await response.text();
-        throw new Error(`HTTP ${response.status}: ${error}`);
+        throw new Error(`HTTP ${response.status}`);
       }
 
       const result = await response.json();
 
-      const countries = result?.data?.objects || [];
-
-      const formatted = countries
+      const formatted = (result?.data || [])
         .map((country) => ({
-          label: country?.names?.common,
-          value: country?.names?.common,
+          label: country.country,
+          value: country.country,
         }))
         .filter((country) => country.label)
         .sort((a, b) => a.label.localeCompare(b.label));
@@ -90,7 +82,7 @@ export default function SolarCalculatorMain({ setSolarData, setLastUpdated ,setF
   };
 
   loadCountries();
-}, [RESTCOUNTRIES_KEY]);
+}, []);
 
   const fetchCities = async (countryName) => {
     setCities([]);
