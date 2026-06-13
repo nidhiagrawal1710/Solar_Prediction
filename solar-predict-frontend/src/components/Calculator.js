@@ -53,7 +53,7 @@ export default function SolarCalculatorMain({ setSolarData, setLastUpdated ,setF
   };
 
   useEffect(() => {
-    fetch("https://restcountries.com/v3.1/all?fields=name")
+    fetch("https://restcountries.com/v5/all?fields=name")
       .then((res) => res.json())
       .then((data) => {
         const formatted = data
