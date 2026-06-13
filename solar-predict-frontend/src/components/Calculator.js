@@ -54,7 +54,7 @@ export default function SolarCalculatorMain({ setSolarData, setLastUpdated ,setF
 
   useEffect(() => {
       fetch(
-  "https://restcountries.com/v5/all?fields=name",
+  "https://restcountries.com/countries/v5?response_fields=names.common,",
   { headers: { 'Authorization': 'Bearer rc_live_8a2f7536242c4ff79723ead438b79ad7' } }
 )
       .then((res) => res.json())
