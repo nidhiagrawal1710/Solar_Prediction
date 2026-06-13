@@ -20,11 +20,7 @@ export default function SolarCalculatorMain({ setSolarData, setLastUpdated ,setF
   const [locationLabel, setLocationLabel] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const API_URL = process.env.REACT_APP_API_URL;
-<<<<<<< HEAD
   // const RESTCOUNTRIES_KEY = process.env.REACT_APP_RESTCOUNTRIES_KEY;
-=======
-  const RESTCOUNTRIES_KEY = process.env.REACT_APP_RESTCOUNTRIES_KEY;
->>>>>>> efbacc7baefa7f4f8721c6950538146a50186af6
 
 
   const calculatePanelArea = (numPanels, panelRating, efficiency = 0.18) => {
