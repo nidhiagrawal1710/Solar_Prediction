@@ -20,7 +20,11 @@ export default function SolarCalculatorMain({ setSolarData, setLastUpdated ,setF
   const [locationLabel, setLocationLabel] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const API_URL = process.env.REACT_APP_API_URL;
+<<<<<<< HEAD
   // const RESTCOUNTRIES_KEY = process.env.REACT_APP_RESTCOUNTRIES_KEY;
+=======
+  const RESTCOUNTRIES_KEY = process.env.REACT_APP_RESTCOUNTRIES_KEY;
+>>>>>>> efbacc7baefa7f4f8721c6950538146a50186af6
 
 
   const calculatePanelArea = (numPanels, panelRating, efficiency = 0.18) => {
@@ -53,23 +57,31 @@ export default function SolarCalculatorMain({ setSolarData, setLastUpdated ,setF
     }
   };
 
-useEffect(() => {
+  useEffect(() => {
   const loadCountries = async () => {
     try {
       const response = await fetch(
-        "https://countriesnow.space/api/v0.1/countries"
+        "https://api.restcountries.com/countries/v5?response_fields=names.common",
+        {
+          headers: {
+            'Authorization': `Bearer ${RESTCOUNTRIES_KEY}`
+          },
+        }
       );
 
       if (!response.ok) {
-        throw new Error(`HTTP ${response.status}`);
+        const error = await response.text();
+        throw new Error(`HTTP ${response.status}: ${error}`);
       }
 
       const result = await response.json();
 
-      const formatted = (result?.data || [])
+      const countries = result?.data?.objects || [];
+
+      const formatted = countries
         .map((country) => ({
-          label: country.country,
-          value: country.country,
+          label: country?.names?.common,
+          value: country?.names?.common,
         }))
         .filter((country) => country.label)
         .sort((a, b) => a.label.localeCompare(b.label));
@@ -82,8 +94,7 @@ useEffect(() => {
   };
 
   loadCountries();
-}, []);
-
+}, [RESTCOUNTRIES_KEY]);
 
   const fetchCities = async (countryName) => {
     setCities([]);
